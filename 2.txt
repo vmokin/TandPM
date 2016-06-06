@@ -1,0 +1,33 @@
+#include "stdafx.h"
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+int main(int argc, _TCHAR* argv[])
+{
+	char Filename[255], b[255];
+	char* c;
+
+	cout << "Enter filename: "; cin >> Filename;
+	ifstream fin(Filename);
+	while (!fin.eof())
+	{
+		fin.getline(Filename, 255);
+		if ((strstr(Filename, "\\func")) != NULL)
+		{
+			c = strstr(Filename, "\\func");
+			c += 6;
+			if (strstr(c, "*/") != NULL)
+			{
+				strcpy_s(b, c);
+				b[strlen(c) - 2] = '\0';
+				cout << b << endl;
+			}
+			else
+				cout << c << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
